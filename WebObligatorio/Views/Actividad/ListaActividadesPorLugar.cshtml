@@ -1,0 +1,44 @@
+﻿@using Dominio
+
+<h2>Actividades por Lugar</h2>
+@if (@ViewBag.Mensaje != null)
+{
+<div class="alert alert-danger" role="alert">
+    @ViewBag.Mensaje
+</div>}
+<form method="post">
+    <div class="form-group col-md-4">
+        <label>Lugar:</label>
+        <select class="form-control" name="idLugar">
+            <option value="-1"> -- Seleccione -- </option>
+            @foreach (Lugar unL in ViewBag.Lugares)
+            {
+                <option value="@unL.Id"> @unL.Nombre </option>
+            }
+        </select>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Buscar">
+</form>
+<br/>
+<div>
+    @if (ViewBag.ListaActividadesPorLugar != null)
+    {
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Actividad unA in ViewBag.ListaActividadesPorLugar)
+            {
+            <tr>
+                <td>@unA.Nombre</td>
+                <td>@unA.NombreCategoria()</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    }
+</div>

@@ -1,0 +1,40 @@
+﻿@using Dominio
+
+<h1>Cancelar Compra</h1>
+@if (@ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Mensaje
+    </div>
+}
+@if (ViewBag.Compras.Count != 0)
+{
+    <p>Recuerde que solo podrá cancelar una compra hasta 24 horas antes del dia de la misma.</p>
+    <p>En la lista de abajo se excluyen automaticamente las compras fuera de tiempo de cancelación.</p>
+    <div class="form-group col-md-6">
+        <label for="compras">¿Que compra desea cancelar?</label>
+        <select class="form-control" id="compras">
+            @foreach (Compra unC in ViewBag.Compras)
+            {
+                <option value="@unC.Id">@unC.Actividad.DevolverNombre() - Fecha: @unC.Actividad.DevolverFecha()</option>
+            }
+        </select>
+    </div>
+    <input class="btn btn-primary" type="button" value="Cancelar Compra" id="btnCancelar">
+}
+else
+{
+    <p>No posee compras activas o en este momento , no es posible cancelarlas.</p>
+}
+
+
+@section Scripts
+{
+    <script>
+        const button = document.getElementById("btnCancelar");
+        button.addEventListener("click", () => {
+            const compra = document.getElementById("compras").value
+            window.location.href = `/compra/Cancelarid?idCompra=${compra}`
+        })
+    </script>
+}

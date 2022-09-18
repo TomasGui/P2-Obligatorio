@@ -1,0 +1,22 @@
+﻿@using Dominio
+
+<h2>Compras con Mayor valor</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio Final</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Compra unC in ViewBag.ComprasMayorValor)
+        {
+            <tr>
+                <th scope="row">@unC.Id</th>
+                <td>@unC.Actividad.DevolverNombre()</td>
+                <td>$ @unC.PrecioFinal</td>
+            </tr>
+        }
+    </tbody>
+</table>

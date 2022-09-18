@@ -1,0 +1,44 @@
+﻿@using Dominio
+@using Microsoft.AspNetCore.Http;
+
+<h1>Lista de actividades</h1>
+@if (@ViewBag.Mensaje != null)
+{
+<div class="alert alert-success" role="alert">
+    @ViewBag.Mensaje
+</div>
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Lugar</th>
+            <th scope="col">Edad Minima</th>
+            <th scope="col">Precio Final</th>
+            <th scope="col"> Cantidad Me gusta</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Actividad unA in @ViewBag.Actividades)
+        {
+        <tr>
+            <th scope="row">@unA.Id</th>
+            <td>@unA.Nombre</td>
+            <td>@unA.NombreCategoria()</td>
+            <td>@unA.FechaYhora</td>
+            <td>@unA.Lugar.Nombre</td>
+            <td>@unA.EdadMinima</td>
+            <td>@unA.PrecioActividad()</td>
+            <td>@unA.MeGusta</td>
+            @if (Context.Session.GetString("rol") == "cliente")
+            {
+        <td><a type="button" class="btn btn-secondary" href="/Actividad/MeGusta?idActividad=@unA.Id"> Dar Me gusta </a></td>
+        <td><a type="button" class="btn btn-secondary" href="/Compra/Compra?idActividad=@unA.Id"> Comprar </a></td>                }
+        </tr>
+        }
+    </tbody>
+</table>
+

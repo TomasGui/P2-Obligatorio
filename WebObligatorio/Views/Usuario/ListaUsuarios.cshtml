@@ -1,0 +1,26 @@
+﻿@using Dominio
+
+<h1>Lista de Clientes</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Fecha Nacimiento</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Usuario unU in @ViewBag.Clientes)
+        {
+        <tr>
+            <th scope="row">@unU.Id</th>
+            <td>@unU.Apellido</td>
+            <td>@unU.Nombre</td>
+            <td>@unU.Email</td>
+            <td>@unU.FechaNac.ToShortDateString()</td>
+        </tr>
+        }
+    </tbody>
+</table>

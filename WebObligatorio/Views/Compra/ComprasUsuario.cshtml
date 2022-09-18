@@ -1,0 +1,37 @@
+﻿@using Dominio
+
+<h1>Lista de compras realizadas</h1>
+@if (ViewBag.Mensaje != null)
+{
+    <p>@ViewBag.Mensaje</p>
+}
+
+@if (ViewBag.Compras != null)
+{
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre Actividad</th>
+                <th scope="col">Fecha y hora</th>
+                <th scope="col">Cantidad Entradas</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Precio Final</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Compra unC in @ViewBag.Compras)
+            {
+                <tr>
+                    <th scope="row">@unC.Id</th>
+                    <td>@unC.NombreActividad()</td>
+                    <td>@unC.FechaYhora</td>
+                    <td>@unC.CantidadEntradas</td>
+                    <td>@unC.DevolverEstado()</td>
+                    <td>$ @unC.PrecioFinal</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

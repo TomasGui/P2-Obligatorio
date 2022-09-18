@@ -1,0 +1,54 @@
+﻿@using Dominio
+
+<h1>Filtrar Compras por fechas</h1>
+<form method="post" action="FiltrarCompras">
+    <div class="form-group col-md-3">
+        <label>Ingrese primera fecha:</label>
+        <input type="date" class="form-control" name="desde" required>
+    </div>
+    <div class="form-group col-md-3">
+        <label>Ingrese segunda fecha:</label>
+        <input type="date" class="form-control" name="hasta" required>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Buscar" class="btn btn-primary">
+    </div>
+</form>
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Mensaje
+    </div>
+}
+@if (ViewBag.Compras != null && ViewBag.TotalCompras != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre Actividad</th>
+                <th scope="col">Fecha y hora</th>
+                <th scope="col">Cantidad Entradas</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Precio Final</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Compra unC in @ViewBag.Compras)
+            {
+            <tr>
+                <th scope="row">@unC.Id</th>
+                <td>@unC.NombreActividad()</td>
+                <td>@unC.FechaYhora</td>
+                <td>@unC.CantidadEntradas</td>
+                <td>@unC.DevolverEstado()</td>
+                <td>$ @unC.PrecioFinal</td>
+            </tr>
+            }
+            <tr>
+                <th colspan="5" scope="row">Total</th>
+                <td>$ @ViewBag.TotalCompras</td>
+            </tr>
+        </tbody>
+    </table>
+}
