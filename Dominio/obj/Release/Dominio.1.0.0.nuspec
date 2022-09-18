@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Dominio</id>
+    <version>1.0.0</version>
+    <authors>Dominio</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETCoreApp3.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Usuario\Desktop\ORT\Programacion 2\Obligatorio 2\20 11 2021 Final\WebObligatorio\Dominio\bin\Release\netcoreapp3.1\Dominio.dll" target="lib\netcoreapp3.1\Dominio.dll" />
+  </files>
+</package>
